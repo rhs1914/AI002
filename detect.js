@@ -59,14 +59,16 @@
     }
     // The results are in an array ordered by confidence.
     // console.log(results[0]);
-    label = results[0].label;
+    label = results[0].label; //중요 티처블 머신 구두 신발등 라벨 값
 
     siren_Audio = document.getElementById("sirensound");
+    music_Audio = document.getElementById("musicsound");
 
 
     if (label=="person") {
 
       if (siren_Audio.paused) {
+         music_Audio.pause();
          siren_Audio.currentTime = 0;
          siren_Audio.play();
       }
@@ -76,7 +78,11 @@
       <h3 style="color: red;">Human detected</h3>
       `;
 
-    } else {
+    }else{
+      if (music_Audio.paused) {
+        //music_Audio.currentTime = music_Audio.paused;
+        music_Audio.play();
+      }
     	document.getElementById("status").innerHTML = `<h3 style="color: #085129;"><i class="fa fa-check-square"></i></h3>
     	<h3 style="color: #085129;">Everything is OK</h3>`;
     }
